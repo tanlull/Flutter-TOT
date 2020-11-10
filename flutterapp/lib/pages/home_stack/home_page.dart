@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/about');
+                  Navigator.pushNamed(context, 'homestack/about');
                 },
                 child: Text('เกี่ยวกับเรา')),
             Text(
