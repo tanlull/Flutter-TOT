@@ -39,7 +39,15 @@ class _MenuState extends State<Menu> {
             title: Text('สินค้า'),
             subtitle: Text('รายละเอียดสินค้า'),
             trailing: Icon(Icons.arrow_right),
-            onTap: () {},
+            selected:
+                ModalRoute.of(context).settings.name == 'productstack/product'
+                    ? true
+                    : false,
+            onTap: () {
+              // Clear all page and goto main
+              Navigator.of(context, rootNavigator: true)
+                  .pushNamedAndRemoveUntil('/productstack', (route) => false);
+            },
           ),
         ],
       ),
