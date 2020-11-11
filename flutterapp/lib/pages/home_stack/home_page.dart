@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/widgets/header.dart';
+import 'package:flutterapp/widgets/menu.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -35,50 +35,85 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     print('build !!!');
     return Scaffold(
+      drawer: Menu(),
       appBar: AppBar(
         title: Image.asset('assets/images/logo_tot.png'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.person_add, color: Colors.white, size: 35),
+              onPressed: null),
+          IconButton(
+              icon: Icon(Icons.exit_to_app, color: Colors.white, size: 35),
+              onPressed: null),
+        ],
+        //leading: Image.asset('assets/images/me.jpg'),
+        // leading: IconButton(
+        //   icon: Icon(Icons.home, color: Colors.white, size: 35),
+        //   onPressed: null,
+        // )
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'homestack/about');
-                },
-                child: Text('เกี่ยวกับเรา')),
-            Text(
-              "ธัญญา 123 $title",
-              style: Theme.of(context).textTheme.headline1,
+      body: GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 2,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, 'homestack/about');
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.person, size: 80, color: Colors.blue),
+                  Text('เกี่ยวกับ',
+                      style: TextStyle(fontSize: 20, color: Colors.blue))
+                ],
+              ),
+              color: Colors.blue[100],
             ),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    title = 'TOT.co.th';
-                  });
-                },
-                child: Text('กดดิ!')),
-            Text(
-              'Hello World from Tsnys',
+          ),
+          OutlinedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.blue[100])),
+            onPressed: () {},
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.map_rounded, size: 80, color: Colors.blue),
+                Text('แผนที่',
+                    style: TextStyle(fontSize: 20, color: Colors.blue))
+              ],
             ),
-            Text(
-              'คุณกดไปแล้วจำนวน:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _decrementCounter();
-                  });
-                },
-                child: Text('ลบ Counter!')),
-          ],
-        ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: const Text('Sound of screams but the'),
+            color: Colors.teal[300],
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: const Text('Who scream'),
+            color: Colors.teal[400],
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: const Text('Revolution is coming...'),
+            color: Colors.teal[500],
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: const Text('Revolution, they...'),
+            color: Colors.teal[600],
+          ),
+        ],
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
