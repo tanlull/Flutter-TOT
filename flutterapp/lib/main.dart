@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/home_stack/home_stack.dart';
+import 'package:flutterapp/pages/login_page.dart';
 import 'package:flutterapp/pages/product_stack/product_stack.dart';
+import 'package:flutterapp/pages/register_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,9 +30,10 @@ class MyApp extends StatelessWidget {
         //home: MyHomePage(title: 'Tanya Home Page'),
         initialRoute: '/',
         routes: {
-          '/': (context) => HomeStack(),
+          '/': (context) => LoginPage(),
           '/homestack': (context) => HomeStack(),
           '/productstack': (context) => ProductStack(),
+          '/register': (context) => RegisterPage(),
         });
   }
 }
