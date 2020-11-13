@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutterapp/redux/app_reducer.dart';
 
 class Menu extends StatefulWidget {
   Menu({Key key}) : super(key: key);
@@ -13,13 +15,19 @@ class _MenuState extends State<Menu> {
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/me.jpg'),
-            ),
-            accountEmail: Text('tanyas@tot.co.th'),
-            accountName: Text('Tanya Sattayaaphitan'),
-          ),
+          StoreConnector<AppState, Map<String, dynamic>>(
+              distinct: true,
+              converter: (store) => store.state.profileState.profile,
+              builder: (context, profile) {
+                return UserAccountsDrawerHeader(
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/me.jpg'),
+                  ),
+                  accountEmail:
+                      Text('${profile['email']} role: ${profile['role']}'),
+                  accountName: Text('${profile['name']}'),
+                );
+              }),
           ListTile(
             leading: Icon(Icons.home),
             title: Text('หน้าหลัก'),

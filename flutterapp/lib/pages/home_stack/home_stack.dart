@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/home_stack/about_page.dart';
 import 'package:flutterapp/pages/home_stack/home_page.dart';
 
+import 'map_page.dart';
+
 class HomeStack extends StatelessWidget {
   const HomeStack({Key key}) : super(key: key);
 
@@ -17,6 +19,9 @@ class HomeStack extends StatelessWidget {
             break;
           case 'homestack/about':
             builder = (BuildContext _) => AboutPage();
+            break;
+          case 'homestack/map':
+            builder = (BuildContext _) => MapPage();
             break;
           default:
             throw Exception('Invalid route: ${settings.name}');
