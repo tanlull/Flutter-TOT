@@ -28,21 +28,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    print('init state (home page)');
+    //print('init state (home page)');
   }
 
   @override
   Widget build(BuildContext context) {
-    print('build !!!');
+    //print('build !!!');
     return Scaffold(
       drawer: Menu(),
       appBar: AppBar(
         title: Image.asset('assets/images/logo_tot.png'),
         centerTitle: true,
         actions: [
-          IconButton(
-              icon: Icon(Icons.person_add, color: Colors.white, size: 35),
-              onPressed: null),
+          // IconButton(
+          //     icon: Icon(Icons.person_add, color: Colors.white, size: 35),
+          //     onPressed: null),
           IconButton(
               icon: Icon(Icons.exit_to_app, color: Colors.white, size: 35),
               onPressed: null),
@@ -91,34 +91,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: const Text('Sound of screams but the'),
-            color: Colors.teal[300],
-          ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: const Text('Who scream'),
-            color: Colors.teal[400],
-          ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: const Text('Revolution is coming...'),
-            color: Colors.teal[500],
-          ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: const Text('Revolution, they...'),
-            color: Colors.teal[600],
-          ),
         ],
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

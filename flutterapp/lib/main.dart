@@ -3,8 +3,16 @@ import 'package:flutterapp/pages/home_stack/home_stack.dart';
 import 'package:flutterapp/pages/login_page.dart';
 import 'package:flutterapp/pages/product_stack/product_stack.dart';
 import 'package:flutterapp/pages/register_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+String token;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  token = prefs.getString('token');
+
   runApp(MyApp());
 }
 
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
         //home: MyHomePage(title: 'Tanya Home Page'),
         initialRoute: '/',
         routes: {
-          '/': (context) => LoginPage(),
+          '/': (context) => token == null ? LoginPage() : HomeStack(),
           '/homestack': (context) => HomeStack(),
           '/productstack': (context) => ProductStack(),
           '/register': (context) => RegisterPage(),

@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flushbar/flushbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -27,18 +28,24 @@ class _LoginPageState extends State<LoginPage> {
     if (response.statusCode == 200) {
       Map<String, dynamic> token = json.decode(response.body);
       //print(feedback['message']);
-      Flushbar(
-        message: '${token['access_token']}',
-        icon: Icon(
-          Icons.info_outline,
-          size: 28.0,
-          color: Colors.green,
-        ),
-        duration: Duration(seconds: 3),
-        leftBarIndicatorColor: Colors.green,
-      )..show(context);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
 
+      await prefs.setString('token', response.body);
+      // get Profile
+      var profileUrl = 'https://api.codingthailand.com/api/profile';
+      var responseProfile = await http.get(profileUrl,
+          headers: {'Authorization': 'Bearer ${token["access_token"]}'});
+
+      Map<String, dynamic> profile = json.decode(responseProfile.body);
+      var user = profile['data']['user'];
+
+      await prefs.setString('profile', json.encode(user));
+      print('profile user =$user');
       //กลับไปที่หน้า HomeStack
+
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/homestack', (route) => false);
+
       // Future.delayed(Duration(seconds: 3), () {
       //     Navigator.pop(context);
       // });
