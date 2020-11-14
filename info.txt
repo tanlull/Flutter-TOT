@@ -1,0 +1,15 @@
+
+--- WEB ---
+
+flutter channel beta
+flutter upgrade
+flutter config --enable-web
+fluter doctor
+flutter create .
+flutter run -d chrome
+
+
+-- build web --
+flutter build web
+
+ /build/web
